@@ -41,6 +41,7 @@ public class Health : MonoBehaviour
     public void RestoreHealth()
     {
         health = maxHealth;
+        Debug.Log("Health restored");
     }
     void Die()
     {

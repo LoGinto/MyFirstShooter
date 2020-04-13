@@ -30,9 +30,9 @@ public class PlayerHealth : MonoBehaviour
     {
         return health / maxHealth;
     }
-    public void RestoreHealth()
+    public void RestoreHealth(float amt)
     {
-        health = maxHealth;
+        FindObjectOfType<PlayerHealth>().health += amt;
     }
     void Die()
     {

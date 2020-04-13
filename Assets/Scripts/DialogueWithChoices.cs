@@ -62,6 +62,7 @@ namespace ChoicedDialogue
             else
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
 
 

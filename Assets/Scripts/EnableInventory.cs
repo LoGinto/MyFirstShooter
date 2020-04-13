@@ -39,15 +39,23 @@ public class EnableInventory : MonoBehaviour
                 child.gameObject.SetActive(false);//no problem in here
             }
             //Cursor.lockState = CursorLockMode.Confined;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
 
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+            }
+           
         }
         else
         {
            
             HideInventory();
+            
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            
         }
     }
 

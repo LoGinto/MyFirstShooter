@@ -6,12 +6,12 @@ public class PhisycalNeeds : MonoBehaviour
 {
     //will configure those 
     [Header("Needs")]
-    [SerializeField] float hungerNeed = 20f;
-    [SerializeField] float needTosleep = 20f;
+    public float stomachVolume = 100f;
+    [SerializeField] float wakePower = 20f;
     [SerializeField] float waterNeed = 15f;
-    private float maximumHungerLimit;
-    private float maximumNeedToSleepLimit;
-    private float maximumNeedForWater;
+     float maximumHungerLimit;
+     float maximumNeedToSleepLimit;
+     float maximumNeedForWater;
     [Space(5)]
     [Header("Need Icons")]
     [SerializeField] Image sleepImage;
@@ -19,65 +19,48 @@ public class PhisycalNeeds : MonoBehaviour
     [SerializeField] Image waterImage;
     [Space(5)]
     [Header("Sounds for drinking and eating")]
-   //  AudioSource audioSource;
+    //[SerializeField]AudioSource sourceOfAudio;
     [SerializeField] AudioClip eatingSound;
     [SerializeField] AudioClip drinkingAudioClip;
+    public bool foodClick = false;
     private void Start()
     {
-        maximumHungerLimit = hungerNeed;
+        maximumHungerLimit = stomachVolume;
+        print(maximumHungerLimit+ " at begininng");
         maximumNeedForWater = waterNeed;
-        maximumNeedToSleepLimit = needTosleep;
-        //audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        maximumNeedToSleepLimit = wakePower;
+        //sourceOfAudio = GetComponent<AudioSource>();
+        //if (sourceOfAudio == null)
+        //{
+        //    sourceOfAudio = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        //}
     }
     
 
     private void Update()
     {
         //Substract the variables according to time
-        hungerNeed -= Time.deltaTime;
-        waterNeed -= Time.deltaTime;
-        needTosleep -= Time.deltaTime;
-        ActionWhileNeedOccured(2f);
-
-    }
-
-    private void ActionWhileNeedOccured(float timeToDoChanges)
-    {
-        if (hungerNeed <= timeToDoChanges)//will convert it to minutes afterwards
+        stomachVolume -= Time.deltaTime;
+       
+        
+        if (stomachVolume < 3f)
         {
-            hungerImage.gameObject.SetActive(true); //for now show image 
-
+            hungerImage.gameObject.SetActive(true);
         }
-        else if(hungerNeed>timeToDoChanges)
+        else
         {
             hungerImage.gameObject.SetActive(false);
         }
-        if (waterNeed <= timeToDoChanges)
-        {
-            waterImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            waterImage.gameObject.SetActive(false);
-        }
-        if (needTosleep <= timeToDoChanges)
-        {
-            sleepImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            sleepImage.gameObject.SetActive(false);
-        }
+        
+         
     }
 
-    public void Eat()
-    {
-        hungerNeed += maximumHungerLimit/2;
-       
-            //audioSource.PlayOneShot(eatingSound);
-        
-       
 
+
+    public void Eat(float amt)
+    {
+
+        FindObjectOfType<PhisycalNeeds>().stomachVolume += amt;
     }
     public void Drink()
     {
@@ -89,7 +72,7 @@ public class PhisycalNeeds : MonoBehaviour
     public void Sleep()
     {
         // must ADD some more functionality here,for now just replenish 
-        needTosleep = maximumNeedToSleepLimit;
+        wakePower = maximumNeedToSleepLimit;
 
     }
    

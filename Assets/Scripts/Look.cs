@@ -72,7 +72,7 @@ public class Look : MonoBehaviour
             {
 
                 Cursor.lockState = CursorLockMode.None;
-
+                Cursor.visible = true;
 
             }
             else
