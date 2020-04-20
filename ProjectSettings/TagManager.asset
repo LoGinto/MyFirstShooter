@@ -14,7 +14,7 @@ TagManager:
   - FPSCam
   - CurrentBullets
   - MaxBullets
-  - OmnivoreAnimal
+  - Animal
   layers:
   - Default
   - TransparentFX
@@ -26,9 +26,9 @@ TagManager:
   - 
   - FirstPerson
   - Ground
-  - 
-  - 
-  - 
+  - Animal
+  - Player
+  - Carnivore
   - 
   - 
   - 
