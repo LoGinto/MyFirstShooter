@@ -9,9 +9,7 @@ public class Animal : MonoBehaviour
     AudioSource audioSource;
     NavMeshAgent agent;
     [Space(2)]
-    
-    
-   // Health animalHealth;
+  // Health animalHealth;
     [Header("Sounds of animal")]
     [SerializeField] AudioClip[] attackSounds;
     [Space(5)]
@@ -25,35 +23,47 @@ public class Animal : MonoBehaviour
     public float attackDistance = 2f;
     public float travelAway = 6f;
     public bool isCarnivore = false;
+    [Space(4)]
+    [Header("Attack object variables")]
+    public LayerMask enemyLayers;
+    public Transform attackPoint = null;
+    public float attackRadius;
     public float damage = 3f;
     [Space(2)]
     [Header("SpeedVars")]
     public float speed = 3f;
-    public float runningSpeed = 5f;  
+    public float runningSpeed = 5f;
     [Header("TimeBetweenAttacks")]
     public float timeBetweenAttacks = 1f;
     //**********************************************************************//d
     private Transform SearchAndFindByTag()
     {
         //find,assign and return
-        
+
         GameObject[] tagArr = GameObject.FindGameObjectsWithTag("Animal");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (animalEnemy == null)
+        {
             foreach (GameObject taggedObject in tagArr)
             {
-                if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject)
+                if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject&&taggedObject.GetComponent<Health>().Died() == false)
                 {
                     animalEnemy = taggedObject.transform;
                     break;
                 }
                 else
                 {
+                    animalEnemy = null;
                     continue;
+                    
                 }
 
             }
-        return animalEnemy;
         }
+
+        return animalEnemy;
+    }
        
     
 
@@ -98,7 +108,8 @@ public class Animal : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, hearingDistance);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
-        
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         
         
     }
@@ -143,7 +154,7 @@ public class Animal : MonoBehaviour
                 Chase();
             }
         }
-
+        
     }
 
     private void Attack()
@@ -154,13 +165,29 @@ public class Animal : MonoBehaviour
         agent.speed = runningSpeed;
         animator.SetBool("isWalking", false);
         StartCoroutine("AttackAnim");
-        Debug.Log(gameObject.name + " Attacked " + animalEnemy.name);
+        // Debug.Log(gameObject.name + " Attacked " + animalEnemy.name);
         
+        Collider[] enemies = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyLayers);
+        foreach (Collider enemy in enemies)
+        {
+            if (enemy.name != this.gameObject.name && enemy.GetComponent<Health>().Died() == false)
+            {
+                
+                enemy.GetComponent<Health>().TakeDamage(damage);
+                Debug.Log(enemy.name + " took " + damage + " damage");
+                if (enemy.GetComponent<Health>().Died())
+                {
+                    animalEnemy = null;
+                    agent.isStopped = false;
+                }
+            }
 
+        }
     }
 
     private void Chase()
     {
+        
         animator.SetBool("isWalking", true);
         agent.speed = runningSpeed;
         agent.isStopped = false;
@@ -176,8 +203,14 @@ public class Animal : MonoBehaviour
     }
     private bool isOnSelectedDistanceToEnemy(float distance)
     {
-        return Vector3.Distance(transform.position, animalEnemy.position) <= distance;
-        
+        if (animalEnemy != null)
+        {
+            return Vector3.Distance(transform.position, animalEnemy.position) <= distance;
+        }
+        else
+        {
+            return false;//idk
+        }
     }
    
 }

@@ -8,10 +8,12 @@ public class Health : MonoBehaviour
     public float health = 10f;
     //public Slider barSlider = null;
     float maxHealth;
-    [Space(5)]
-    [Header("Sounds")]
-    [SerializeField] AudioClip[] injurySounds;
-    [SerializeField] AudioClip[] deathSounds;
+    bool isDead = false;
+    Collider myCollider;
+    //[Space(5)]
+    //[Header("Sounds")]
+    //[SerializeField] AudioClip[] injurySounds;
+    //[SerializeField] AudioClip[] deathSounds;
     AudioSource audioSource;
     Animator animator;
     //int timesDamageTaken = 0;
@@ -21,6 +23,7 @@ public class Health : MonoBehaviour
        // barSlider.value = CalculateHealth();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        myCollider = GetComponent<Collider>();
     }
     // Start is called before the first frame update
     public void TakeDamage(float damage)
@@ -31,6 +34,7 @@ public class Health : MonoBehaviour
         //    //Show healthBar
         //}
         health -= damage;
+        Debug.Log(gameObject + " took Damage");
         //barSlider.value = CalculateHealth();
         if (health <= 0f)
         { 
@@ -50,6 +54,16 @@ public class Health : MonoBehaviour
     void Die()
     {
         animator.SetTrigger("Die");
-        Debug.Log(gameObject + "is Dead");
+        if (gameObject.CompareTag("Animal"))
+        {
+            GetComponent<Animal>().enabled = false;
+            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
+            myCollider.isTrigger = true;
+        }
+        isDead = true;
+    }
+    public bool Died()
+    {
+        return isDead;
     }
 }

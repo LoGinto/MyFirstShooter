@@ -15,6 +15,7 @@ TagManager:
   - CurrentBullets
   - MaxBullets
   - Animal
+  - Ally
   layers:
   - Default
   - TransparentFX
