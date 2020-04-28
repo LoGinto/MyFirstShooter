@@ -4,19 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyPatrol : MonoBehaviour
 {
-    [SerializeField] EnemyWays enemyWay;
+    [SerializeField] EnemyWays enemyWay = null;
     int wayIndex = 0;
-    Enemy enemy;
-    float timeSinceArrived = 0;
-    public float nextPointTime = 3f;
-    public float maxDistanceFromWaypoint = 1.5f;
     Vector3 currentPos;
     Animator animator;
-    NavMeshAgent nav;
+    NavMeshAgent navMeshagent;
+    float timeSinceArrived = 0;
+    public float nextPointTime = 3f;
+    public float maxDistanceFromWaypoint = 5f;
+    Enemy enemy;
     // Start is called before the first frame update
     void Start()
     {
-        nav = GetComponent<NavMeshAgent>();
+        navMeshagent = GetComponent<NavMeshAgent>();
         currentPos = transform.position;
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
@@ -26,46 +26,36 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         timeSinceArrived += Time.deltaTime;
-        Patrol();
+        PatrolPath();
     }
 
-    private void Patrol()
+    private void PatrolPath()
     {
+        Vector3 nextPos = currentPos;
         if (!enemy.SightedPlayer())
         {
-            //Loop through the points 
-            Vector3 nextPos = currentPos;
-
-            if (isOnwayPoint())
-            {
-                timeSinceArrived = 0;
-                NextPoint();
-            }
-            nextPos = CurrentWayPointPos();
-            if (timeSinceArrived > nextPointTime)
-            {
-                MoveTo(nextPos);
-
-            }
-            else
+            if (ISonWayPoint())
             {
                 animator.SetBool("isWalking", false);
                 animator.SetBool("Idle", true);
+
+                NextPoint();
+                
+                nextPos = CurrentWayPointPos();
+
+                if (timeSinceArrived > nextPointTime)
+                {
+                    timeSinceArrived = 0;
+                    MoveTo(nextPos);
+                }
             }
         }
     }
-
-    void MoveTo(Vector3 destination)
+    IEnumerator Stay()
     {
-        nav.destination = destination;
-        nav.isStopped = false;
-
-        if (!enemy.SightedPlayer())
-        {
-            animator.SetBool("isWalking", true);
-            animator.SetBool("Idle", false);
-        }
+        yield return new WaitForSeconds(nextPointTime);
     }
+
     private void NextPoint()
     {
         wayIndex = enemyWay.GetNextIndexInLoop(wayIndex);
@@ -74,10 +64,21 @@ public class EnemyPatrol : MonoBehaviour
     {
         return enemyWay.GetEndpoint(wayIndex);
     }
-   public bool isOnwayPoint()
+
+    void MoveTo(Vector3 newDestination)
     {
+        navMeshagent.destination = newDestination;
+        navMeshagent.SetDestination(newDestination);
+        navMeshagent.isStopped = false; 
+        animator.SetBool("isWalking", true);
+        animator.SetBool("Idle", false);
         
+    }
+    bool ISonWayPoint()
+    {
         float distanceToPath = Vector3.Distance(transform.position, CurrentWayPointPos());
         return distanceToPath < maxDistanceFromWaypoint;
+
     }
 }
+    

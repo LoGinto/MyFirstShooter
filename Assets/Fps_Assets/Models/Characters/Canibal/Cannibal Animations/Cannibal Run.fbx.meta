@@ -1,154 +1,400 @@
 fileFormatVersion: 2
 guid: f409017dfa8ce594abcce37cedf82203
-timeCreated: 1484492650
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Arm_L
-    100002: Arm_R
-    100004: Armature
-    100006: Cannibal
-    100008: //RootNode
-    100010: Cannibal_Eyes
-    100012: Chest
-    100014: Foot_L
-    100016: Foot_R
-    100018: Forearm_L
-    100020: Forearm_R
-    100022: Hand_L
-    100024: Hand_R
-    100026: Head
-    100028: Hips
-    100030: Index_1_L
-    100032: Index_1_R
-    100034: Index_2_L
-    100036: Index_2_R
-    100038: Index_3_L
-    100040: Index_3_R
-    100042: Male_Hide_Skirt
-    100044: Middle_1_L
-    100046: Middle_1_R
-    100048: Middle_2_L
-    100050: Middle_2_R
-    100052: Middle_3_L
-    100054: Middle_3_R
-    100056: Middle_Spine
-    100058: Neck
-    100060: Pinky_1_L
-    100062: Pinky_1_R
-    100064: Pinky_2_L
-    100066: Pinky_2_L_002
-    100068: Pinky_3_L
-    100070: Pinky_3_R
-    100072: Ring_1_L
-    100074: Ring_1_R
-    100076: Ring_2_L
-    100078: Ring_2_R
-    100080: Ring_3_L
-    100082: Ring_3_R
-    100084: Shin_L
-    100086: Shin_R
-    100088: Shoulder_L
-    100090: Shoulder_R
-    100092: Thigh_L
-    100094: Thigh_R
-    100096: Thumb_1_L
-    100098: Thumb_1_R
-    100100: Thumb_2_L
-    100102: Thumb_2_R
-    100104: Thumb_3_L
-    100106: Thumb_3_R
-    100108: Toes_L
-    100110: Toes_R
-    400000: Arm_L
-    400002: Arm_R
-    400004: Armature
-    400006: Cannibal
-    400008: //RootNode
-    400010: Cannibal_Eyes
-    400012: Chest
-    400014: Foot_L
-    400016: Foot_R
-    400018: Forearm_L
-    400020: Forearm_R
-    400022: Hand_L
-    400024: Hand_R
-    400026: Head
-    400028: Hips
-    400030: Index_1_L
-    400032: Index_1_R
-    400034: Index_2_L
-    400036: Index_2_R
-    400038: Index_3_L
-    400040: Index_3_R
-    400042: Male_Hide_Skirt
-    400044: Middle_1_L
-    400046: Middle_1_R
-    400048: Middle_2_L
-    400050: Middle_2_R
-    400052: Middle_3_L
-    400054: Middle_3_R
-    400056: Middle_Spine
-    400058: Neck
-    400060: Pinky_1_L
-    400062: Pinky_1_R
-    400064: Pinky_2_L
-    400066: Pinky_2_L_002
-    400068: Pinky_3_L
-    400070: Pinky_3_R
-    400072: Ring_1_L
-    400074: Ring_1_R
-    400076: Ring_2_L
-    400078: Ring_2_R
-    400080: Ring_3_L
-    400082: Ring_3_R
-    400084: Shin_L
-    400086: Shin_R
-    400088: Shoulder_L
-    400090: Shoulder_R
-    400092: Thigh_L
-    400094: Thigh_R
-    400096: Thumb_1_L
-    400098: Thumb_1_R
-    400100: Thumb_2_L
-    400102: Thumb_2_R
-    400104: Thumb_3_L
-    400106: Thumb_3_R
-    400108: Toes_L
-    400110: Toes_R
-    4300000: Cannibal_Eyes
-    4300002: Cannibal
-    4300004: Male_Hide_Skirt
-    7400000: Cannibal Run
-    9500000: //RootNode
-    13700000: Cannibal
-    13700002: Cannibal_Eyes
-    13700004: Male_Hide_Skirt
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Arm_L
+  - first:
+      1: 100002
+    second: Arm_R
+  - first:
+      1: 100004
+    second: Armature
+  - first:
+      1: 100006
+    second: Cannibal
+  - first:
+      1: 100008
+    second: //RootNode
+  - first:
+      1: 100010
+    second: Cannibal_Eyes
+  - first:
+      1: 100012
+    second: Chest
+  - first:
+      1: 100014
+    second: Foot_L
+  - first:
+      1: 100016
+    second: Foot_R
+  - first:
+      1: 100018
+    second: Forearm_L
+  - first:
+      1: 100020
+    second: Forearm_R
+  - first:
+      1: 100022
+    second: Hand_L
+  - first:
+      1: 100024
+    second: Hand_R
+  - first:
+      1: 100026
+    second: Head
+  - first:
+      1: 100028
+    second: Hips
+  - first:
+      1: 100030
+    second: Index_1_L
+  - first:
+      1: 100032
+    second: Index_1_R
+  - first:
+      1: 100034
+    second: Index_2_L
+  - first:
+      1: 100036
+    second: Index_2_R
+  - first:
+      1: 100038
+    second: Index_3_L
+  - first:
+      1: 100040
+    second: Index_3_R
+  - first:
+      1: 100042
+    second: Male_Hide_Skirt
+  - first:
+      1: 100044
+    second: Middle_1_L
+  - first:
+      1: 100046
+    second: Middle_1_R
+  - first:
+      1: 100048
+    second: Middle_2_L
+  - first:
+      1: 100050
+    second: Middle_2_R
+  - first:
+      1: 100052
+    second: Middle_3_L
+  - first:
+      1: 100054
+    second: Middle_3_R
+  - first:
+      1: 100056
+    second: Middle_Spine
+  - first:
+      1: 100058
+    second: Neck
+  - first:
+      1: 100060
+    second: Pinky_1_L
+  - first:
+      1: 100062
+    second: Pinky_1_R
+  - first:
+      1: 100064
+    second: Pinky_2_L
+  - first:
+      1: 100066
+    second: Pinky_2_L_002
+  - first:
+      1: 100068
+    second: Pinky_3_L
+  - first:
+      1: 100070
+    second: Pinky_3_R
+  - first:
+      1: 100072
+    second: Ring_1_L
+  - first:
+      1: 100074
+    second: Ring_1_R
+  - first:
+      1: 100076
+    second: Ring_2_L
+  - first:
+      1: 100078
+    second: Ring_2_R
+  - first:
+      1: 100080
+    second: Ring_3_L
+  - first:
+      1: 100082
+    second: Ring_3_R
+  - first:
+      1: 100084
+    second: Shin_L
+  - first:
+      1: 100086
+    second: Shin_R
+  - first:
+      1: 100088
+    second: Shoulder_L
+  - first:
+      1: 100090
+    second: Shoulder_R
+  - first:
+      1: 100092
+    second: Thigh_L
+  - first:
+      1: 100094
+    second: Thigh_R
+  - first:
+      1: 100096
+    second: Thumb_1_L
+  - first:
+      1: 100098
+    second: Thumb_1_R
+  - first:
+      1: 100100
+    second: Thumb_2_L
+  - first:
+      1: 100102
+    second: Thumb_2_R
+  - first:
+      1: 100104
+    second: Thumb_3_L
+  - first:
+      1: 100106
+    second: Thumb_3_R
+  - first:
+      1: 100108
+    second: Toes_L
+  - first:
+      1: 100110
+    second: Toes_R
+  - first:
+      4: 400000
+    second: Arm_L
+  - first:
+      4: 400002
+    second: Arm_R
+  - first:
+      4: 400004
+    second: Armature
+  - first:
+      4: 400006
+    second: Cannibal
+  - first:
+      4: 400008
+    second: //RootNode
+  - first:
+      4: 400010
+    second: Cannibal_Eyes
+  - first:
+      4: 400012
+    second: Chest
+  - first:
+      4: 400014
+    second: Foot_L
+  - first:
+      4: 400016
+    second: Foot_R
+  - first:
+      4: 400018
+    second: Forearm_L
+  - first:
+      4: 400020
+    second: Forearm_R
+  - first:
+      4: 400022
+    second: Hand_L
+  - first:
+      4: 400024
+    second: Hand_R
+  - first:
+      4: 400026
+    second: Head
+  - first:
+      4: 400028
+    second: Hips
+  - first:
+      4: 400030
+    second: Index_1_L
+  - first:
+      4: 400032
+    second: Index_1_R
+  - first:
+      4: 400034
+    second: Index_2_L
+  - first:
+      4: 400036
+    second: Index_2_R
+  - first:
+      4: 400038
+    second: Index_3_L
+  - first:
+      4: 400040
+    second: Index_3_R
+  - first:
+      4: 400042
+    second: Male_Hide_Skirt
+  - first:
+      4: 400044
+    second: Middle_1_L
+  - first:
+      4: 400046
+    second: Middle_1_R
+  - first:
+      4: 400048
+    second: Middle_2_L
+  - first:
+      4: 400050
+    second: Middle_2_R
+  - first:
+      4: 400052
+    second: Middle_3_L
+  - first:
+      4: 400054
+    second: Middle_3_R
+  - first:
+      4: 400056
+    second: Middle_Spine
+  - first:
+      4: 400058
+    second: Neck
+  - first:
+      4: 400060
+    second: Pinky_1_L
+  - first:
+      4: 400062
+    second: Pinky_1_R
+  - first:
+      4: 400064
+    second: Pinky_2_L
+  - first:
+      4: 400066
+    second: Pinky_2_L_002
+  - first:
+      4: 400068
+    second: Pinky_3_L
+  - first:
+      4: 400070
+    second: Pinky_3_R
+  - first:
+      4: 400072
+    second: Ring_1_L
+  - first:
+      4: 400074
+    second: Ring_1_R
+  - first:
+      4: 400076
+    second: Ring_2_L
+  - first:
+      4: 400078
+    second: Ring_2_R
+  - first:
+      4: 400080
+    second: Ring_3_L
+  - first:
+      4: 400082
+    second: Ring_3_R
+  - first:
+      4: 400084
+    second: Shin_L
+  - first:
+      4: 400086
+    second: Shin_R
+  - first:
+      4: 400088
+    second: Shoulder_L
+  - first:
+      4: 400090
+    second: Shoulder_R
+  - first:
+      4: 400092
+    second: Thigh_L
+  - first:
+      4: 400094
+    second: Thigh_R
+  - first:
+      4: 400096
+    second: Thumb_1_L
+  - first:
+      4: 400098
+    second: Thumb_1_R
+  - first:
+      4: 400100
+    second: Thumb_2_L
+  - first:
+      4: 400102
+    second: Thumb_2_R
+  - first:
+      4: 400104
+    second: Thumb_3_L
+  - first:
+      4: 400106
+    second: Thumb_3_R
+  - first:
+      4: 400108
+    second: Toes_L
+  - first:
+      4: 400110
+    second: Toes_R
+  - first:
+      43: 4300000
+    second: Cannibal_Eyes
+  - first:
+      43: 4300002
+    second: Cannibal
+  - first:
+      43: 4300004
+    second: Male_Hide_Skirt
+  - first:
+      74: 7400000
+    second: Cannibal Run
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Cannibal
+  - first:
+      137: 13700002
+    second: Cannibal_Eyes
+  - first:
+      137: 13700004
+    second: Male_Hide_Skirt
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Cannibal Run
       takeName: mixamo.com
+      internalID: 0
       firstFrame: 0
       lastFrame: 15
       wrapMode: 0
@@ -158,15 +404,15 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
@@ -292,13 +538,23 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -308,10 +564,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Hips
       humanName: Hips
@@ -1009,14 +1269,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
