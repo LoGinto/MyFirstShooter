@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\LowPolyWater_Pack\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\Animal.cs" />
+    <Compile Include="Assets\Scripts\BulletPickup.cs" />
     <Compile Include="Assets\Scripts\DestinationChange.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
     <Compile Include="Assets\Scripts\DialogueWithChoices.cs" />

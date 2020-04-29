@@ -2181,6 +2181,7 @@ GameObject:
   - component: {fileID: 6983499568407595052}
   - component: {fileID: 6983499568407595055}
   - component: {fileID: 6983499568407595051}
+  - component: {fileID: 1309256467}
   m_Layer: 0
   m_Name: Zombie1
   m_TagString: Untagged
@@ -2195,7 +2196,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6983499568407595054}
-  m_LocalRotation: {x: -0, y: 0.6696464, z: -0, w: 0.7426802}
+  m_LocalRotation: {x: 0, y: 0.6696493, z: 0, w: 0.7426775}
   m_LocalPosition: {x: -24.24, y: 254.12, z: 229.01}
   m_LocalScale: {x: 1.7103797, y: 1.1700194, z: 1.7103797}
   m_Children:
@@ -2214,7 +2215,6 @@ Transform:
   - {fileID: 5216036687361266830}
   - {fileID: 3912894680622132058}
   - {fileID: 7060726845233428466}
-  - {fileID: 7547514779544788664}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 84.08, z: 0}
@@ -2280,8 +2280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 50
-  eyesPoint: {fileID: 7547514779544788664}
-  firstPoint: {fileID: 0}
+  fieldOfViewAngle: 110
   playerInSight: 0
   runningSpeed: 3
   enemyOfenemy: {fileID: 0}
@@ -2301,7 +2300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyWay: {fileID: 0}
   nextPointTime: 3
-  maxDistanceFromWaypoint: 5
+  maxDistanceFromWaypoint: 9
 --- !u!195 &6983499568407595051
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2324,6 +2323,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &1309256467
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6983499568407595054}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!1 &7103065208803348671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,36 +2483,6 @@ Transform:
   - {fileID: 2399633828537403300}
   m_Father: {fileID: 2329359981894030532}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7547514779544788667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7547514779544788664}
-  m_Layer: 0
-  m_Name: EyePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7547514779544788664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7547514779544788667}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.684, z: 0.064}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6246780770637167165}
-  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7613526757717912513
 GameObject:

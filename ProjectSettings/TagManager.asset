@@ -16,6 +16,7 @@ TagManager:
   - MaxBullets
   - Animal
   - Ally
+  - WeaponRoot
   layers:
   - Default
   - TransparentFX

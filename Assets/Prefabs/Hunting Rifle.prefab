@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f10cc3589a8af2488a18fb4fa474115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Rifle
   range: 100
   damage: 10
   maxBulletLoaded: 6

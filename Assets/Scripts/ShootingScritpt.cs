@@ -6,6 +6,7 @@ namespace Weapon
 {
     public class ShootingScritpt : MonoBehaviour
     {
+        public string weaponType; 
         [Header("Range and Damage")]
         public float range = 100f;
         public float damage = 10f;
@@ -33,6 +34,7 @@ namespace Weapon
         public Text bulletsInMagazineText = null;
         public Text amountOfBulletsIHaveFoundText;
 
+
         // Start is called before the first frame update
         void Start()
         {
@@ -52,6 +54,10 @@ namespace Weapon
                 amountOfBulletsIHaveFoundText = GameObject.FindGameObjectWithTag("MaxBullets").GetComponent<Text>();
             }
 
+        }
+        public string GetWeaponType()
+        {
+            return weaponType;
         }
 
         // Update is called once per frame
@@ -183,7 +189,7 @@ namespace Weapon
         }
         public void AddFoundBullets(int bulletsFound)
         {
-             carryingOfType =+ bulletsFound;
+             carryingOfType = carryingOfType + bulletsFound;
         }
         
        
