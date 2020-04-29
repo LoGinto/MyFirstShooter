@@ -53,12 +53,23 @@ public class Health : MonoBehaviour
     }
     void Die()
     {
-        animator.SetTrigger("Die");
+        try
+        {
+            animator.SetTrigger("Die");
+        }
+        catch
+        {
+            Debug.Log(gameObject.name + " died");
+        }
         if (gameObject.CompareTag("Animal"))
         {
             GetComponent<Animal>().enabled = false;
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
             myCollider.isTrigger = true;
+        }
+        if (gameObject.CompareTag("Ally"))
+        {
+            Destroy(gameObject);//for now
         }
         isDead = true;
     }

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public float health = 10f;
     public Slider barSlider = null;
     float maxHealth;
+    bool playerDied = false;
     private void Start()
     {
         float maxHealth = health;
@@ -37,5 +38,10 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + " is Dead");
+        playerDied = true;
+    }
+    public bool PlayerDied()
+    {
+        return playerDied;
     }
 }

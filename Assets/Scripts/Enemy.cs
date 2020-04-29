@@ -15,8 +15,12 @@ public class Enemy : MonoBehaviour
     [Header("Attack vars")]
     public float attackDistance = 2f;
     public float timeBetweenAttacks = 1f;
+    public Transform attackPoint = null;
+    public float attackRadius;
+    public float damage;
+    public LayerMask hostileLayer;
+    //***************************************//
     private NavMeshAgent nav;
-    //private Collider col;
     Animator animator;
     GameObject player;
     Vector3 direction;
@@ -39,6 +43,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if(enemyOfenemy == null)
+        {
+            enemyOfenemy = player.transform;
+            //debug purpose for now        
+        }
         //EnemySight();
         if (playerInSight)
         {
@@ -46,7 +55,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            animator.ResetTrigger("Attack");
+            StopCoroutine("AttackAnim");
         }
         StopOnAttack();
     }
@@ -57,12 +66,40 @@ public class Enemy : MonoBehaviour
             animator.SetBool("isRunning", false);
             nav.isStopped = true;
             StartCoroutine("AttackAnim");
+            Collider[] enemies = Physics.OverlapSphere(attackPoint.position, attackRadius, hostileLayer);
+            foreach (Collider enemy in enemies)
+            {
+                if (enemy.CompareTag("Ally"))
+                {
+                    enemy.GetComponent<Health>().TakeDamage(damage);
+                    Debug.Log(enemy.name + " took " + damage + " damage");
+                    if (enemy.GetComponent<Health>().Died())
+                    {
+                        enemyOfenemy = player.transform;
+                        nav.isStopped = false;
+                        playerInSight = false;
+                        StopCoroutine("AttackAnim");
+                        animator.SetBool("Idle", true);
+                        animator.SetBool("isAttacking", false);
+                    }
+                }
+                else if (enemy.CompareTag("Player"))
+                {
+                    enemy.GetComponent<PlayerHealth>().DealDamageToPlayer(damage);
+                    Debug.Log(enemy.name + " took " + damage + " damage");
+                    if (enemy.GetComponent<PlayerHealth>().PlayerDied())
+                    {
+                        enemyOfenemy = null;
+                        nav.isStopped = false;
+                    }
+                }
+            }
         }
-        if (!isOnSelectedDistanceToPlayer(attackDistance) && playerInSight)
+     if (!isOnSelectedDistanceToPlayer(attackDistance) && playerInSight)
         {
             Chase();
         }
-
+ 
     }
     IEnumerator AttackAnim()
     {
@@ -117,8 +154,6 @@ public class Enemy : MonoBehaviour
                 playerInSight = false;
             }
         }
-
-
     }
     public bool SightedPlayer()
     {
@@ -126,15 +161,14 @@ public class Enemy : MonoBehaviour
     }
     private void Chase()
     {
-            transform.LookAt(enemyOfenemy);
+            transform.LookAt(Vector3.Scale(enemyOfenemy.position, new Vector3(0, 1, 1)));
             animator.SetBool("isRunning", true);
             animator.SetBool("isWalking", false);
             animator.SetBool("Idle", false);
             nav.speed = runningSpeed;
             nav.isStopped = false;
             nav.SetDestination(enemyOfenemy.position);
-            nav.destination = enemyOfenemy.position;
-        
+            nav.destination = enemyOfenemy.position;    
     }
 
     private bool isOnSelectedDistanceToPlayer(float distance)
@@ -145,6 +179,9 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
 }
+    

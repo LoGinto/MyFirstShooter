@@ -244,6 +244,36 @@ Transform:
   m_Father: {fileID: 3390037373122279172}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1190129259615463545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400738589923026194}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400738589923026194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190129259615463545}
+  m_LocalRotation: {x: -0, y: -0.6696464, z: 0, w: 0.7426802}
+  m_LocalPosition: {x: -0.012, y: 1.4136447, z: 0.799}
+  m_LocalScale: {x: 0.5846653, y: 0.8546867, z: 0.5846653}
+  m_Children: []
+  m_Father: {fileID: 6246780770637167165}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1323131660903352201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2245,7 @@ Transform:
   - {fileID: 5216036687361266830}
   - {fileID: 3912894680622132058}
   - {fileID: 7060726845233428466}
+  - {fileID: 400738589923026194}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 84.08, z: 0}
@@ -2251,7 +2282,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 16
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &6983499568407595053
 CapsuleCollider:
@@ -2279,13 +2310,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d586837055d7c3548a67057ffe15ad08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 50
   fieldOfViewAngle: 110
   playerInSight: 0
   runningSpeed: 3
   enemyOfenemy: {fileID: 0}
-  attackDistance: 2
+  attackDistance: 3
   timeBetweenAttacks: 1
+  attackPoint: {fileID: 400738589923026194}
+  attackRadius: 0.6
+  damage: 3
+  hostileLayer:
+    serializedVersion: 2
+    m_Bits: 10240
 --- !u!114 &6983499568407595055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2334,7 +2370,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 10
   m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!1 &7103065208803348671
 GameObject:
