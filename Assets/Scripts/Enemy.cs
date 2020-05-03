@@ -43,11 +43,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(enemyOfenemy == null)
-        {
-            enemyOfenemy = player.transform;
-            //debug purpose for now        
-        }
+        
         //EnemySight();
         if (playerInSight)
         {

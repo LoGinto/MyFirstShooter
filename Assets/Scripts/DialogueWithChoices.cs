@@ -118,7 +118,7 @@ namespace ChoicedDialogue
             crosshairCanvas.blocksRaycasts = false;//or true 
             needCanvas.alpha = 0f;
             needCanvas.blocksRaycasts = false;
-            
+
         }
         public void ShowCanvas()
         {

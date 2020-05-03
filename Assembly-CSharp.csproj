@@ -65,6 +65,7 @@
     <Compile Include="Assets\LowPolyWater_Pack\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\Animal.cs" />
     <Compile Include="Assets\Scripts\BulletPickup.cs" />
+    <Compile Include="Assets\Scripts\CommandAI.cs" />
     <Compile Include="Assets\Scripts\DestinationChange.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
     <Compile Include="Assets\Scripts\DialogueWithChoices.cs" />
@@ -74,10 +75,10 @@
     <Compile Include="Assets\Scripts\EnemyPatrol.cs" />
     <Compile Include="Assets\Scripts\EnemyWays.cs" />
     <Compile Include="Assets\Scripts\FirstPersonMovement.cs" />
-    <Compile Include="Assets\Scripts\GetMeat.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Look.cs" />
+    <Compile Include="Assets\Scripts\Partner.cs" />
     <Compile Include="Assets\Scripts\PhisycalNeeds.cs" />
     <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\SimpleCloudSystem by RM\SCS.cs" />
     <None Include="Assets\Fps_Assets\Shaders\Standard\_Antialiasing\FXAAPreset2.shader" />
     <None Include="Assets\Fps_Assets\Shaders\Standard\_DepthOfField\Bokeh34.shader" />
+    <None Include="Assets\Yurowm\Shaders\SkinShader.shader" />
     <None Include="Assets\Fps_Assets\Shaders\Standard\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\Fps_Assets\Shaders\Standard\_BloomAndFlares\LensFlareCreate.shader" />
     <None Include="Assets\LowPolyWater_Pack\Shaders\WaterShaded.shader" />

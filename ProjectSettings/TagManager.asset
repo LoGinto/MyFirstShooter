@@ -17,6 +17,7 @@ TagManager:
   - Animal
   - Ally
   - WeaponRoot
+  - PlaceHolder
   layers:
   - Default
   - TransparentFX
