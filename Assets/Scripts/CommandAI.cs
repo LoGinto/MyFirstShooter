@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CommandAI : MonoBehaviour
 {
     public GameObject myPartner = null;//I will set it empty for now
     public bool canControl = false;
     bool menuShowedUp;
+    public Canvas canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +19,36 @@ public class CommandAI : MonoBehaviour
     void Update()
     {
         NullifyControl();
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            menuShowedUp = !menuShowedUp;
-        }
-        if (canControl&&menuShowedUp&&Input.GetKeyDown(KeyCode.Alpha1))
+        ShowOrHideMenu();
+        AIBools();
+        
+        canvas.gameObject.SetActive(menuShowedUp);
+    }
+
+    private void AIBools()
+    {
+        if (canControl && menuShowedUp && Input.GetKeyDown(KeyCode.F1))
         {
             myPartner.GetComponent<Partner>().SetFollowing(true);
             myPartner.GetComponent<Partner>().SetWaiting(false);
+            menuShowedUp = false;
             Debug.Log(myPartner.name + " is Following");
+        }
+        if (canControl && menuShowedUp && Input.GetKeyDown(KeyCode.F2))
+        {
+            myPartner.GetComponent<Partner>().SetFollowing(false);
+            myPartner.GetComponent<Partner>().SetWaiting(true);
+            menuShowedUp = false;
+            Debug.Log(myPartner.name + " is Waiting");
+        }
+    }
+    
+
+    private void ShowOrHideMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            menuShowedUp = !menuShowedUp;
         }
     }
 

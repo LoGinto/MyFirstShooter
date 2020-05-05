@@ -65,7 +65,7 @@ namespace Weapon
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
             {
-                SwitchNumber(1);
+               // SwitchNumber(1);
                // currentWeapon = 1;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
