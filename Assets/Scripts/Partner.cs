@@ -9,6 +9,7 @@ public class Partner : MonoBehaviour
     public float runningSpeed;
     public float stealthSpeed;
     public float hireDistance = 3f;
+    public float hearingDistance;
     public float standAwayFromPlayer;
     private Animator animator;
     public float fieldOfViewAngle = 110f;
@@ -28,6 +29,7 @@ public class Partner : MonoBehaviour
     FirstPersonMovement playerMovement;
     GameObject player;
     SphereCollider sphereCollider;
+    Transform placeHolder;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -38,16 +40,22 @@ public class Partner : MonoBehaviour
         initialPosition = transform.position;
         command = player.GetComponent<CommandAI>();
         sphereCollider = GetComponent<SphereCollider>();
-        enemyOfAI = GameObject.FindGameObjectWithTag("PlaceHolder").transform;
+        placeHolder = GameObject.FindGameObjectWithTag("PlaceHolder").transform;
+        enemyOfAI = placeHolder;
 
     }
 
     private void Update()
     {
-        if(enemyOfAI == null)
+        if (enemyOfAI == null)
         {
-            enemyOfAI = GameObject.FindGameObjectWithTag("PlaceHolder").transform;  
+            enemyOfAI = GameObject.FindGameObjectWithTag("PlaceHolder").transform;
         }
+        if (enemyOfAI != placeHolder || enemyOfAI != null)
+        {
+            DealDamage();
+        }
+        SearchAndFindByTag();
         HookUp();
         StopSneakGo();
         Follow();
@@ -168,8 +176,8 @@ public class Partner : MonoBehaviour
 
     private void DealDamage()
     {
-        transform.LookAt(enemyOfAI);
-        
+        transform.LookAt(Vector3.Scale(enemyOfAI.position, new Vector3(0, 1, 1)));
+
         StartCoroutine("AttackPause");
         try
         {
@@ -219,6 +227,49 @@ public class Partner : MonoBehaviour
     {
         return Vector3.Distance(transform.position, player.transform.position) <= distance;
     }
+    private Transform SearchAndFindByTag()
+    {
+        //find,assign and return
+
+        GameObject[] animals = GameObject.FindGameObjectsWithTag("Animal");
+        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
+
+        if (enemyOfAI == null || enemyOfAI == placeHolder)
+        {
+            foreach (GameObject taggedObject in animals)//iteration through animals
+            {
+                if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject && taggedObject.GetComponent<Health>().Died() == false)
+                {
+                    enemyOfAI = taggedObject.transform;
+                    break;
+                }
+                else
+                {
+                    enemyOfAI = null;
+                    continue;
+
+                }
+
+            } //iteration through zombies
+            foreach (GameObject taggedObject in zombies)
+            {
+                if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject && taggedObject.GetComponent<Health>().Died() == false)
+                {
+                    enemyOfAI = taggedObject.transform;
+                    break;
+                }
+                else
+                {
+                    enemyOfAI = null;
+                    continue;
+
+                }
+
+            }
+        }
+
+        return enemyOfAI;
+    }  
     public bool IsHooked()
     {
         return hookedUp;
@@ -245,5 +296,7 @@ public class Partner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, hireDistance);
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, standAwayFromPlayer);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, hearingDistance);
     }
 }

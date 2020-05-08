@@ -74,11 +74,12 @@ public class EnemyPatrol : MonoBehaviour
         animator.SetBool("Idle", false);
         
     }
-    bool ISonWayPoint()
+   public bool ISonWayPoint()
     {
         float distanceToPath = Vector3.Distance(transform.position, CurrentWayPointPos());
         return distanceToPath < maxDistanceFromWaypoint;
 
     }
+    
 }
     

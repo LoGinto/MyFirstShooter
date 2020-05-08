@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public bool playerInSight;
     public float runningSpeed;
     public Transform enemyOfenemy;
+    public Transform firstPoint;
     [Header("Attack vars")]
     public float attackDistance = 2f;
     public float timeBetweenAttacks = 1f;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
     GameObject player;
     Vector3 direction;
     SphereCollider sphereCollider;
+    EnemyPatrol patrol;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -33,17 +35,26 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
+        patrol = GetComponent<EnemyPatrol>();
         nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
         Physics.queriesHitBackfaces = false;
         enemyOfenemy = player.transform;
+        
 
     }
 
     private void Update()
     {
-        
+        if (!patrol.ISonWayPoint()&&!playerInSight)
+        {
+            nav.SetDestination(firstPoint.position);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", true);
+            animator.SetBool("Idle", false);
+        }
+       
         //EnemySight();
         if (playerInSight)
         {
