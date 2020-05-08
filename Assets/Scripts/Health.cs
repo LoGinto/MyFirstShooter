@@ -56,16 +56,26 @@ public class Health : MonoBehaviour
         try
         {
             animator.SetTrigger("Die");
+            Debug.Log(gameObject.name + " died");
         }
         catch
         {
             Debug.Log(gameObject.name + " died");
+            Destroy(this.gameObject);
         }
         if (gameObject.CompareTag("Animal"))
         {
-            GetComponent<Animal>().enabled = false;
-            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
-            myCollider.isTrigger = true;
+            try
+            {
+                GetComponent<Animal>().enabled = false;
+                gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
+                myCollider.isTrigger = true;
+            }
+            catch
+            {
+                Debug.Log(gameObject.name + " (Animal) is slaughtered");
+                
+            }
         }
         if (gameObject.CompareTag("Ally"))
         {

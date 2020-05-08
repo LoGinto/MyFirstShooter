@@ -35,6 +35,7 @@ public class WeaponPickup : MonoBehaviour
                 foreach (Transform child in weaponRoot.transform)
                 {
                     insta = child.transform;
+                    Debug.Log("Weapon Pickup Try activated");
                     break;
                 }
             }
@@ -50,14 +51,17 @@ public class WeaponPickup : MonoBehaviour
             int i = 0;
             foreach (Transform child in weaponRoot.transform)
             {
+
                 if (i == indexToReplace)
                 {
                     //Vector3 childPos = child.transform.position;
+                    
                     Destroy(child.gameObject);
                     Instantiate(weaponToInstantiate, insta.position, instance, weaponRoot.transform);
                     break;
 
                 }
+
                 i++;
             }
             Destroy(gameObject);

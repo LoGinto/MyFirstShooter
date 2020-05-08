@@ -18,16 +18,20 @@ namespace Weapon
             {
                 foreach (Transform weapon in weaponRoot.transform)
                 {
-                    
+                    try
+                    {
                         if (weapon.gameObject.GetComponent<ShootingScritpt>().GetWeaponType() == weaponForPickup)
                         {
                             weapon.gameObject.GetComponent<ShootingScritpt>().AddFoundBullets(bulletAmount);
-                            break;
-                        }                    
+                        }
+                    }
+                    catch
+                    {
+                        Debug.Log(gameObject.name +" Catch executed");
+                    }
                 }
                 Destroy(gameObject);
             }
         }
-
     }
 }

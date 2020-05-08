@@ -18,6 +18,9 @@ TagManager:
   - Ally
   - WeaponRoot
   - PlaceHolder
+  - holdFireText
+  - Zombie
+  - HumanEnemy
   layers:
   - Default
   - TransparentFX

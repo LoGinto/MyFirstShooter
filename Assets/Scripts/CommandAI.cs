@@ -8,6 +8,7 @@ public class CommandAI : MonoBehaviour
     public bool canControl = false;
     bool menuShowedUp;
     public Canvas canvas;
+    public Text holdFireText;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +22,11 @@ public class CommandAI : MonoBehaviour
         NullifyControl();
         ShowOrHideMenu();
         AIBools();
-        
         canvas.gameObject.SetActive(menuShowedUp);
+        if (menuShowedUp)
+        {
+            holdFireText = GameObject.FindGameObjectWithTag("holdFireText").GetComponent<Text>();
+        }
     }
 
     private void AIBools()
@@ -41,7 +45,24 @@ public class CommandAI : MonoBehaviour
             menuShowedUp = false;
             Debug.Log(myPartner.name + " is Waiting");
         }
+        if (canControl && menuShowedUp && Input.GetKeyDown(KeyCode.F3))
+        {
+            if (myPartner.GetComponent<Partner>().GetAgressionState() == true)
+            {
+                myPartner.GetComponent<Partner>().SetAgressive(false);
+                holdFireText.text = "f3.Hold Your Fire".ToString();
+                menuShowedUp = false;
+            }
+            else
+            {
+                myPartner.GetComponent<Partner>().SetAgressive(true);
+                holdFireText.text = "f3.Fire at will".ToString();
+                menuShowedUp = false;
+            }
+
+        }
     }
+
     
 
     private void ShowOrHideMenu()
