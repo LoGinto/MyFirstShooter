@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Partner : MonoBehaviour
 {
+    [Header("Too lazy to sort")]
     public float speed;
     Vector3 direction;
     public float runningSpeed;
@@ -57,7 +58,14 @@ public class Partner : MonoBehaviour
         }
         SearchAndFindByTag();
         HookUp();
-        StopSneakGo();
+        try
+        {
+            StopSneakGo();
+        }
+        catch
+        {
+            Debug.Log("I don't give a fuck");
+        }
         Follow();
         Wait();
         if (isOnSelectedDistanceToPlayer(standAwayFromPlayer) && playerMovement.GetStealth())
