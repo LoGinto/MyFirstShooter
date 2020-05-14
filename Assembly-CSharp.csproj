@@ -65,6 +65,7 @@
     <Compile Include="Assets\LowPolyWater_Pack\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\Animal.cs" />
     <Compile Include="Assets\Scripts\BulletPickup.cs" />
+    <Compile Include="Assets\Scripts\CarDriving.cs" />
     <Compile Include="Assets\Scripts\CommandAI.cs" />
     <Compile Include="Assets\Scripts\DestinationChange.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
@@ -115,7 +116,7 @@
     <None Include="Assets\PB_Spider\readme.txt" />
     <None Include="Assets\Fps_Assets\Shaders\Standard\_Antialiasing\FXAA2.shader" />
     <None Include="Assets\Fps_Assets\Shaders\Standard\ColorCorrectionSelective.shader" />
-    <None Include="Assets\Realistic Hail Set\README.txt" />
+    <None Include="Assets\Scenes\Realistic Hail Set\README.txt" />
     <None Include="Assets\SimpleCloudSystem by RM\Read Me.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/game/MyFirstFPS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

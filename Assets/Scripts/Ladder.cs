@@ -39,5 +39,9 @@ public class Ladder : MonoBehaviour
         {
             player.transform.position += Vector3.up / heightFactor;
         }
+        if (inside == true && Input.GetKey(KeyCode.S))
+        {
+            player.transform.position += Vector3.down / heightFactor;
+        }
     }
 }

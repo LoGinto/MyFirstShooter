@@ -31,8 +31,10 @@ public class Partner : MonoBehaviour
     GameObject player;
     SphereCollider sphereCollider;
     Transform placeHolder;
+    float init_speed;
     private void Start()
     {
+        init_speed = speed;
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -43,6 +45,7 @@ public class Partner : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         placeHolder = GameObject.FindGameObjectWithTag("PlaceHolder").transform;
         enemyOfAI = placeHolder;
+        agressiveBehaviour = true;
 
     }
 
@@ -56,17 +59,21 @@ public class Partner : MonoBehaviour
         {
             DealDamage();
         }
-        SearchAndFindByTag();
+        if (agressiveBehaviour)
+        {
+            SearchAndFindByTag();
+        }
         HookUp();
         try
         {
             StopSneakGo();
+            Follow();
         }
         catch
         {
             Debug.Log("I don't give a fuck");
         }
-        Follow();
+        
         Wait();
         if (isOnSelectedDistanceToPlayer(standAwayFromPlayer) && playerMovement.GetStealth())
         {
@@ -74,12 +81,53 @@ public class Partner : MonoBehaviour
             animator.SetBool("Crouch", true);
 
         }
+        //RunAfterPlayer();
+        if(isOnSelectedDistanceToPlayer(standAwayFromPlayer)&& !playerMovement.GetStealth())
+        {
+            animator.SetBool("Walk", false);
+            animator.SetBool("Run", false);
+            animator.SetBool("Idle", true);
+        }
     }
+
+    private void RunAfterPlayer()
+    {
+        
+        if (!isOnSelectedDistanceToPlayer(standAwayFromPlayer) && playerMovement.PlayerIsRunning())
+        {
+            speed = runningSpeed;
+            transform.LookAt(Vector3.Scale(player.transform.position, new Vector3(0, 1, 1)));
+            animator.SetBool("Run", playerMovement.PlayerIsRunning());
+            animator.SetBool("Idle", false);
+            animator.SetBool("Crouch", false);
+        }
+        else if (!playerMovement.PlayerIsRunning() && playerMovement.IsStanding())
+        {
+            speed = init_speed;
+            transform.LookAt(Vector3.Scale(player.transform.position, new Vector3(0, 1, 1)));
+            animator.SetBool("Run", false);
+            animator.SetBool("Idle", true);
+            animator.SetBool("Walk", false);
+
+        }
+        else if (!playerMovement.PlayerIsRunning() && !playerMovement.IsStanding())
+        {
+            speed = init_speed;
+            transform.LookAt(Vector3.Scale(player.transform.position, new Vector3(0, 1, 1)));
+            animator.SetBool("Run", playerMovement.PlayerIsRunning());
+            animator.SetBool("Walk", true);
+            animator.SetBool("Idle", false);
+            animator.SetBool("Crouch", false);
+        }
+        
+    }
+
     void Follow()
     {
         if (waitHere == false && followMe == true && hookedUp && !isOnSelectedDistanceToPlayer(standAwayFromPlayer))
         {
             nav.isStopped = false;
+            transform.LookAt(Vector3.Scale(player.transform.position, new Vector3(0, 1, 1)));
             nav.SetDestination(player.transform.position);
             if (playerMovement.GetStealth())
             {
@@ -87,6 +135,21 @@ public class Partner : MonoBehaviour
                 animator.SetBool("Sneak", true);
                 animator.SetBool("Crouch", false);
 
+            }
+            else
+            {
+                animator.SetBool("Crouch", false);
+                animator.SetBool("Sneak", false);
+                animator.SetBool("Idle", false);
+                if (!playerMovement.PlayerIsRunning())
+                {
+                    animator.SetBool("Walk", true);
+                    animator.SetBool("Run", false);
+                }
+                else
+                {
+                    RunAfterPlayer();
+                }
             }
 
         }
@@ -151,7 +214,10 @@ public class Partner : MonoBehaviour
             float angle = Vector3.Angle(direction, transform.forward);
             if (angle < fieldOfViewAngle * 0.5f)
             {
-                AllySight();
+                if (agressiveBehaviour)
+                {
+                    AllySight();
+                }           
             }
         }
     }
