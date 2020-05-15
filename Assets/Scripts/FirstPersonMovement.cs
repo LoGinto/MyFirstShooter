@@ -19,7 +19,7 @@ public class FirstPersonMovement : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
     public float runSpeed = 14f;
-    public Slider staminaSlider;
+    //public Slider staminaSlider;
     public bool stealth = false;
     bool isStanding;
     float init_speed;
@@ -47,7 +47,7 @@ public class FirstPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        staminaSlider.value = CalculateStamina();
+       // staminaSlider.value = CalculateStamina();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
         {
