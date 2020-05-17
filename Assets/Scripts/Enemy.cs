@@ -41,20 +41,20 @@ public class Enemy : MonoBehaviour
 
         Physics.queriesHitBackfaces = false;
         enemyOfenemy = player.transform;
-        
+
 
     }
 
     private void Update()
     {
-        if (!patrol.ISonWayPoint()&&!playerInSight)
+        if (!patrol.ISonWayPoint() && !playerInSight)
         {
             nav.SetDestination(firstPoint.position);
             animator.SetBool("isRunning", false);
             animator.SetBool("isWalking", true);
             animator.SetBool("Idle", false);
         }
-       
+
         //EnemySight();
         if (playerInSight)
         {
@@ -102,11 +102,11 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-     if (!isOnSelectedDistanceToPlayer(attackDistance) && playerInSight)
+        if (!isOnSelectedDistanceToPlayer(attackDistance) && playerInSight)
         {
             Chase();
         }
- 
+
     }
     IEnumerator AttackAnim()
     {
@@ -117,6 +117,13 @@ public class Enemy : MonoBehaviour
 
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Ally"))
+        {
+            playerInSight = false;
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Ally"))
@@ -124,19 +131,12 @@ public class Enemy : MonoBehaviour
             playerInSight = false;
             direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
-            if(angle< fieldOfViewAngle * 0.5f)
+            if (angle < fieldOfViewAngle * 0.5f)
             {
                 EnemySight();
             }
         }
-        
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Ally"))
-        {
-            playerInSight = false;
-        }
+
     }
 
     private void EnemySight()
@@ -155,11 +155,11 @@ public class Enemy : MonoBehaviour
                     playerInSight = true;
                 }
             }
-            else
-            {
-                Debug.DrawLine(transform.position + transform.up, transform.position + transform.forward * sphereCollider.radius, Color.blue);
-                playerInSight = false;
-            }
+            //else
+            //{
+            //    Debug.DrawLine(transform.position + transform.up, transform.position + transform.forward * sphereCollider.radius, Color.blue);
+            //    playerInSight = false;
+            //}
         }
     }
     public bool SightedPlayer()
@@ -168,14 +168,14 @@ public class Enemy : MonoBehaviour
     }
     private void Chase()
     {
-            transform.LookAt(Vector3.Scale(enemyOfenemy.position, new Vector3(0, 1, 1)));
-            animator.SetBool("isRunning", true);
-            animator.SetBool("isWalking", false);
-            animator.SetBool("Idle", false);
-            nav.speed = runningSpeed;
-            nav.isStopped = false;
-            nav.SetDestination(enemyOfenemy.position);
-            nav.destination = enemyOfenemy.position;    
+        transform.LookAt(Vector3.Scale(enemyOfenemy.position, new Vector3(0, 1, 1)));
+        animator.SetBool("isRunning", true);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("Idle", false);
+        nav.speed = runningSpeed;
+        nav.isStopped = false;
+        nav.SetDestination(enemyOfenemy.position);
+        nav.destination = enemyOfenemy.position;
     }
 
     private bool isOnSelectedDistanceToPlayer(float distance)
@@ -191,4 +191,3 @@ public class Enemy : MonoBehaviour
     }
 
 }
-    

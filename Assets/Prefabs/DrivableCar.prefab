@@ -1219,9 +1219,10 @@ GameObject:
   - component: {fileID: 285212009529899616}
   - component: {fileID: 285212009532753248}
   - component: {fileID: 285212010212125987}
+  - component: {fileID: 1283871068}
   m_Layer: 0
   m_Name: DrivableCar
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1286,6 +1287,21 @@ MonoBehaviour:
     steering: 0
   maxMotorTorque: 25000
   maxSteeringAngle: 30
+--- !u!114 &1283871068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285212009529861696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4141f8ac621b55d49939433a7a8933e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entered: 0
+  entranceDistance: 12.81
+  carCam: {fileID: 285212009616069149}
 --- !u!1 &285212009529861728
 GameObject:
   m_ObjectHideFlags: 0

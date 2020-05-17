@@ -9,18 +9,25 @@ public class EnterACar : MonoBehaviour
     GameObject player;
     [SerializeField] float entranceDistance;
     public Camera carCam;
+    private bool enteredAI;
+    CommandAI commandAI;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         carDriving = GetComponent<CarDriving>();
         entered = false;
-        
+        commandAI = player.GetComponent<CommandAI>();
     }
     private void Update()
     {
         carDriving.enabled = entered;
         carCam.gameObject.SetActive(entered);
         player.SetActive(!entered);
+        if (commandAI.myPartner.tag != "PlaceHolder"&&commandAI.canControl == true)
+        {
+            commandAI.myPartner.SetActive(!entered);
+        }
+            
         if (Input.GetKeyDown(KeyCode.U))
         {
             if (isOnSelectedDistanceToPlayer(entranceDistance))
@@ -32,12 +39,25 @@ public class EnterACar : MonoBehaviour
         if (entered)
         {
             player.transform.parent = gameObject.transform;
+            if (commandAI.GetPartner() != null)
+            {
+                if(commandAI.myPartner.GetComponent<Partner>().GetWaiting() == false)
+                {
+                    commandAI.myPartner.transform.parent = gameObject.transform;
+                    enteredAI = true;
+                }
+            }
             
         }
         else
         {
             
             player.transform.parent = null;
+            if (commandAI.GetPartner() != null&&enteredAI == true)
+            {
+                commandAI.transform.parent = null;
+                enteredAI = false;
+            }
         }
 
        

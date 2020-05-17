@@ -86,5 +86,16 @@ public class CommandAI : MonoBehaviour
     {
         myPartner = partner;
     }
-    
+    public GameObject GetPartner()
+    {
+        if(myPartner.tag != "PlaceHolder" && canControl)
+        {
+            return myPartner;
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
 }

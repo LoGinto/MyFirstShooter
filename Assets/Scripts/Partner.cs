@@ -59,10 +59,10 @@ public class Partner : MonoBehaviour
         {
             DealDamage();
         }
-        if (agressiveBehaviour)
-        {
-            SearchAndFindByTag();
-        }
+        //if (agressiveBehaviour)
+        //{
+        //    SearchAndFindByTag();
+        //}
         HookUp();
         try
         {
@@ -219,6 +219,11 @@ public class Partner : MonoBehaviour
                     AllySight();
                 }           
             }
+            if (Vector3.Distance(transform.position, other.transform.position) <= hearingDistance)
+            {
+                enemyOfAI = other.transform;
+                DealDamage();
+            }
         }
     }
     void AllySight()
@@ -301,49 +306,49 @@ public class Partner : MonoBehaviour
     {
         return Vector3.Distance(transform.position, player.transform.position) <= distance;
     }
-    private Transform SearchAndFindByTag()
-    {
-        //find,assign and return
+    //private Transform SearchAndFindByTag()
+    //{
+    //    //find,assign and return
+    //    //doesn't work properly
+    //    GameObject[] animals = GameObject.FindGameObjectsWithTag("Animal");
+    //    GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
 
-        GameObject[] animals = GameObject.FindGameObjectsWithTag("Animal");
-        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
+    //    if (enemyOfAI == null || enemyOfAI == placeHolder)
+    //    {
+    //        foreach (GameObject taggedObject in animals)//iteration through animals
+    //        {
+    //            if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject && taggedObject.GetComponent<Health>().Died() == false)
+    //            {
+    //                enemyOfAI = taggedObject.transform;
+    //                break;
+    //            }
+    //            else
+    //            {
+    //                enemyOfAI = null;
+    //                continue;
 
-        if (enemyOfAI == null || enemyOfAI == placeHolder)
-        {
-            foreach (GameObject taggedObject in animals)//iteration through animals
-            {
-                if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject && taggedObject.GetComponent<Health>().Died() == false)
-                {
-                    enemyOfAI = taggedObject.transform;
-                    break;
-                }
-                else
-                {
-                    enemyOfAI = null;
-                    continue;
+    //            }
 
-                }
+    //        } //iteration through zombies
+    //        foreach (GameObject taggedObject in zombies)
+    //        {
+    //            if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject && taggedObject.GetComponent<Health>().Died() == false)
+    //            {
+    //                enemyOfAI = taggedObject.transform;
+    //                break;
+    //            }
+    //            else
+    //            {
+    //                enemyOfAI = null;
+    //                continue;
 
-            } //iteration through zombies
-            foreach (GameObject taggedObject in zombies)
-            {
-                if (Vector3.Distance(transform.position, taggedObject.transform.position) <= hearingDistance && taggedObject != gameObject && taggedObject.GetComponent<Health>().Died() == false)
-                {
-                    enemyOfAI = taggedObject.transform;
-                    break;
-                }
-                else
-                {
-                    enemyOfAI = null;
-                    continue;
+    //            }
 
-                }
+    //        }
+    //    }
 
-            }
-        }
-
-        return enemyOfAI;
-    }  
+    //    return enemyOfAI;
+    //}  
     public bool IsHooked()
     {
         return hookedUp;
@@ -372,5 +377,13 @@ public class Partner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, standAwayFromPlayer);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, hearingDistance);
+    }
+    public bool GetWaiting()
+    {
+        return waitHere;
+    }
+    public bool GetFollowing()
+    {
+        return followMe;
     }
 }
