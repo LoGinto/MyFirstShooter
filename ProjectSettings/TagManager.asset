@@ -21,6 +21,7 @@ TagManager:
   - holdFireText
   - Zombie
   - HumanEnemy
+  - ScopeOverlay
   layers:
   - Default
   - TransparentFX
